@@ -1,21 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import {
   View,
   Text,
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  TouchableOpacity,
   Linking,
+  ImageBackground,
 } from 'react-native';
-import {Card, FAB} from 'react-native-paper';
+import {FAB} from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import axios from 'axios';
 
-const Contacts = () => {
-  const [contacts, setContacts] = useState([]);
+const Graphs = () => {
   const [users, setUsers] = useState([]);
 
   const fetchUsers = () => {
@@ -53,20 +51,8 @@ const Contacts = () => {
     return Linking.openURL('tel:6647451762');
   };
 
-  const fetchContacts = () => {
-    axios
-      .get('http://34.197.229.133/users/emergencycontact/')
-      .then(res => {
-        console.log(res.data);
-        setContacts(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
   useEffect(() => {
     fetchUsers();
-    fetchContacts();
   }, []);
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -87,34 +73,23 @@ const Contacts = () => {
                 fontWeight: '900',
                 color: '#fff',
               }}>
-              Contacts
+              Charts
             </Text>
-            <TouchableOpacity>
-              <MaterialCommunityIcons name="plus" size={30} color="#fff" />
-            </TouchableOpacity>
           </View>
-          <View>
+          <View style={{marginTop: 20}}>
+            <ImageBackground
+              source={require('../assets/images/charts.jpeg')}
+              style={{width: '100%', height: 250, marginBottom: 20}}
+            />
             <Text
               style={{
-                fontSize: 16,
+                fontSize: 20,
                 fontFamily: 'Roboto-Medium',
                 color: '#fff',
-                marginBottom: 5,
               }}>
-              Emergency Contacts
+              Your gluocose is usually high on Wendsday and low on Saturday and
+              daily its high at 4:00 AM and low at 12:00 PM.
             </Text>
-            {contacts &&
-              contacts.length > 0 &&
-              contacts.map(contact => {
-                return (
-                  <Card key={contact} style={{marginBottom: 5}}>
-                    <Card.Title
-                      title={`${contact.name}(${contact._type_contact.name})`}
-                      subtitle={contact.phone_number}
-                    />
-                  </Card>
-                );
-              })}
           </View>
         </ScrollView>
       </LinearGradient>
@@ -134,6 +109,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  linearGradient: {
+    height: '100%',
+    width: '100%',
+  },
   fab: {
     position: 'absolute',
     margin: 16,
@@ -141,10 +120,6 @@ const styles = StyleSheet.create({
     bottom: 30,
     backgroundColor: '#db493c',
   },
-  linearGradient: {
-    height: '100%',
-    width: '100%',
-  },
 });
 
-export default Contacts;
+export default Graphs;
