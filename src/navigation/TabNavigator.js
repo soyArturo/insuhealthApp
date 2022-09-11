@@ -6,6 +6,8 @@ import HomeScreen from '../screens/HomeScreen';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Contacts from '../screens/Contacts';
+import Historical from '../screens/Historical';
+import Graphs from '../screens/Graphs';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -29,7 +31,7 @@ const TabNavigator = () => {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {backgroundColor: '#fff'},
-        tabBarInactiveTintColor: '#B0D5AF',
+        tabBarInactiveTintColor: '#ccc',
         tabBarActiveTintColor: '#000',
       }}>
       <Tab.Screen
@@ -58,8 +60,8 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Contacts2"
-        component={Contacts}
+        name="Historical"
+        component={Historical}
         options={{
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons
@@ -72,7 +74,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Contacts3"
-        component={Contacts}
+        component={Graphs}
         options={{
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons

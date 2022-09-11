@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 
@@ -19,22 +20,25 @@ export default function InputField({
         marginBottom: 25,
       }}>
       {icon}
-      {inputType == 'password' ? (
+      {inputType === 'password' ? (
         <TextInput
           placeholder={label}
           keyboardType={keyboardType}
-          style={{flex: 1, paddingVertical: 0}}
+          style={{flex: 1, paddingVertical: 0, color: '#666'}}
           secureTextEntry={true}
         />
       ) : (
         <TextInput
           placeholder={label}
           keyboardType={keyboardType}
-          style={{flex: 1, paddingVertical: 0}}
+          autoCapitalize="none"
+          style={{flex: 1, paddingVertical: 0, color: '#666'}}
         />
       )}
       <TouchableOpacity onPress={fieldButtonFunction}>
-        <Text style={{color: '#AD40AF', fontWeight: '700'}}>{fieldButtonLabel}</Text>
+        <Text style={{color: '#000', fontWeight: '700'}}>
+          {fieldButtonLabel}
+        </Text>
       </TouchableOpacity>
     </View>
   );
